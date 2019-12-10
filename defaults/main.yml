@@ -15,38 +15,69 @@ jmeter_configuration: "{{ jmeter_base_dir }}/{{ jmeter_name }}/bin/jmeter.proper
 #jmeter_dir_tmp: "/tmp" # or override with "{{ tempdir.stdout }} in order to have be sure to download the file"
 jmeter_dir_tmp: "{{ tempdir.stdout }}"
 
-jmeter_version: "3.0"
+jmeter_version: "5.1.1"
 
 jmeter_name: "apache-jmeter-{{ jmeter_version }}"
 jmeter_archive: "{{ jmeter_name }}.zip"
 #jmeter_url: "http://mirrors.ircam.fr/pub/apache/jmeter/binaries/{{ jmeter_archive }}"
 jmeter_url: "https://archive.apache.org/dist/jmeter/binaries/{{ jmeter_archive }}"
 
-jmeter_plugins_version: "1.3.1"
+# LIBRARIES
+
+# a que tenho estado a testar é a 2.2.1
+jmeter_libraries_jedis_version: "3.0.1"
+jmeter_libraries_jedis__enabled: yes
+jmeter_libraries_jedis__archive: "jedis-{{ jmeter_libraries_jedis_version }}.zip"
+jmeter_libraries_jedis__url: "https://github.com/xetorthio/jedis/archive/{{ jmeter_libraries_jedis__archive }}"
+
+jmeter_libraries_commons_pool_version: "1.6"
+jmeter_libraries_commons_pool__enabled: yes
+jmeter_libraries_commons_pool__archive: "commons-pool-{{ jmeter_libraries_commons_pool_version }}-bin.zip"
+jmeter_libraries_commons_pool__url: "http://mirrors.up.pt/pub/apache//commons/pool/binaries/{{ jmeter_libraries_commons_pool__archive }}"
+
+
+# PLUGINS
+
+jmeter_packages_archive: "https://jmeter-plugins.org/files/packages"
+
+jmeter_plugins_websockets_version: "1.2.1"
+jmeter_plugins_websockets_enabled: yes
+jmeter_plugins_websockets_archive: "websocket-samplers-{{ jmeter_plugins_websockets_version }}.zip"
+jmeter_plugins_websockets_url: "{{ jmeter_packages_archive }}/{{ jmeter_plugins_websockets_archive }}"
+
+jmeter_plugins_jpgc_redis_version: "0.3"
+jmeter_plugins_jpgc_redis_enabled: yes
+jmeter_plugins_jpgc_redis_archive: "jpgc-redis-{{ jmeter_plugins_jpgc_redis_version }}.zip"
+jmeter_plugins_jpgc_redis_url: "{{ jmeter_packages_archive }}/{{ jmeter_plugins_jpgc_redis_archive }}"
+
+jmeter_plugins_jpgc_casutg_version: "2.7"
+jmeter_plugins_jpgc_casutg_enabled: yes
+jmeter_plugins_jpgc_casutg_archive: "jpgc-casutg-{{ jmeter_plugins_jpgc_casutg_version }}.zip"
+jmeter_plugins_jpgc_casutg_url: "{{ jmeter_packages_archive }}/{{ jmeter_plugins_jpgc_casutg_archive }}"
 
 jmeter_plugins_standard_enabled: yes
 jmeter_plugins_standard_archive: "JMeterPlugins-Standard-{{ jmeter_plugins_version }}.zip"
 jmeter_plugins_standard_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_standard_archive }}"
 
-jmeter_plugins_extras_enabled: yes
-jmeter_plugins_extras_archive: "JMeterPlugins-Extras-{{ jmeter_plugins_version }}.zip"
-jmeter_plugins_extras_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_extras_archive }}"
+# jmeter_plugins_extras_enabled: yes
+# jmeter_plugins_extras_archive: "JMeterPlugins-Extras-{{ jmeter_plugins_version }}.zip"
+# jmeter_plugins_extras_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_extras_archive }}"
 
-jmeter_plugins_extraslibs_enabled: yes
-jmeter_plugins_extraslibs_archive: "JMeterPlugins-ExtrasLibs-{{ jmeter_plugins_version }}.zip"
-jmeter_plugins_extraslibs_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_extraslibs_archive }}"
+# jmeter_plugins_extraslibs_enabled: yes
+# jmeter_plugins_extraslibs_archive: "JMeterPlugins-ExtrasLibs-{{ jmeter_plugins_version }}.zip"
+# jmeter_plugins_extraslibs_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_extraslibs_archive }}"
 
-jmeter_plugins_webdriver_enabled: no
-jmeter_plugins_webdriver_archive: "JMeterPlugins-WebDriver-{{ jmeter_plugins_version }}.zip"
-jmeter_plugins_webdriver_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_webdriver_archive }}"
+# jmeter_plugins_webdriver_enabled: no
+# jmeter_plugins_webdriver_archive: "JMeterPlugins-WebDriver-{{ jmeter_plugins_version }}.zip"
+# jmeter_plugins_webdriver_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_webdriver_archive }}"
 
-jmeter_plugins_hadoop_enabled: no
-jmeter_plugins_hadoop_archive: "JMeterPlugins-Hadoop-{{ jmeter_plugins_version }}.zip"
-jmeter_plugins_hadoop_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_hadoop_archive }}"
+# jmeter_plugins_hadoop_enabled: no
+# jmeter_plugins_hadoop_archive: "JMeterPlugins-Hadoop-{{ jmeter_plugins_version }}.zip"
+# jmeter_plugins_hadoop_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_plugins_hadoop_archive }}"
 
-jmeter_serveragent_version: "2.2.1"
+# jmeter_serveragent_version: "2.2.1"
 
-jmeter_serveragent_base_dir: "/usr/local/jmeter-agent"
-jmeter_serveragent_enabled: no
-jmeter_serveragent_archive: "ServerAgent-{{ jmeter_serveragent_version }}.zip"
-jmeter_serveragent_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_serveragent_archive }}"
+# jmeter_serveragent_base_dir: "/usr/local/jmeter-agent"
+# jmeter_serveragent_enabled: no
+# jmeter_serveragent_archive: "ServerAgent-{{ jmeter_serveragent_version }}.zip"
+# jmeter_serveragent_url: "http://jmeter-plugins.org/downloads/file/{{ jmeter_serveragent_archive }}"

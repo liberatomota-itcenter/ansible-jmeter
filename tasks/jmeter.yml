@@ -57,6 +57,14 @@
 #  become : yes
 #  tags: jmeter_setup
 
+- name: jmeter | Copy user.properties files to jmeter bin
+  copy:
+    src: user.properties
+    remote_src: no
+    dest: "{{ jmeter_base_dir }}/{{ jmeter_name }}/bin"
+  tags: 
+    - jmeter_user_properties
+
 #jmeter plugins WebSocket Samplers
 - name: jmeter | Download jmeter WebSocket Samplers plugin
   get_url:
@@ -85,7 +93,9 @@
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_jpgc_redis_plugin
   when: jmeter_plugins_jpgc_redis_enabled
-  tags: jmeter_setup
+  tags: 
+    - jmeter_setup
+    - jmeter_plugins
 
 - name: jmeter | Extract archive jmeter JPGC Redis plugin
   unarchive:
@@ -96,7 +106,9 @@
 #    group="{{ jmeter_group }}"
   when: jmeter_jpgc_redis_plugin.changed and jmeter_plugins_jpgc_redis_enabled
 #  when: jmeter_plugins_standard_enabled
-  tags: jmeter_setup
+  tags: 
+    - jmeter_setup
+    - jmeter_plugins
   become: yes
 
 #jmeter plugins JPGC CASUTG
@@ -106,7 +118,9 @@
     dest="{{ jmeter_dir_tmp }}/"
   register: jmeter_jpgc_casutg_plugin
   when: jmeter_plugins_jpgc_redis_enabled
-  tags: jmeter_setup
+  tags: 
+    - jmeter_setup
+    - jmeter_plugins
 
 - name: jmeter | Extract archive jmeter JPGC CASUTG plugin
   unarchive:
@@ -117,7 +131,9 @@
 #    group="{{ jmeter_group }}"
   when: jmeter_jpgc_casutg_plugin.changed and jmeter_plugins_jpgc_casutg_enabled
 #  when: jmeter_plugins_standard_enabled
-  tags: jmeter_setup
+  tags: 
+    - jmeter_setup
+    - jmeter_plugins
   become: yes
 
 ## -------------------------------------------------------------------------------- ##
